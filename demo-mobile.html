@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#123c32">
+<title>Ecologia ENEM — Demonstração mobile</title>
+<style>
+:root{--green:#123c32;--green2:#285b49;--lime:#c9e59b;--ink:#1d2923;--muted:#65736b;--paper:#f3f6f2;--line:#dce5dd;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.58 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:var(--green);color:#fff;padding:16px max(18px,calc((100% - 720px)/2));display:flex;justify-content:space-between;align-items:center;gap:10px}
+.brand{font-size:13px;font-weight:800;letter-spacing:.04em}.tag{font-size:11px;color:#d7e9dd}
+main{max-width:720px;margin:0 auto;padding:20px 16px 36px}.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.04em}
+.track{height:6px;background:#e1e9e1;border-radius:10px;margin:10px 0 18px;overflow:hidden}.track span{display:block;width:3.57%;height:100%;background:#83a95f}
+.card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 8px 24px #183d2810}
+.kicker{color:var(--green2);font-size:12px;font-weight:850;letter-spacing:.09em;text-transform:uppercase}
+h1{font-size:clamp(21px,5vw,27px);line-height:1.25;margin:8px 0 18px}
+.statement{font-size:16px;line-height:1.72}.source{font-size:12px;color:var(--muted);margin:12px 0 20px}
+.prompt{font-weight:750;margin:0 0 12px}
+.answers{display:grid;gap:10px}.choice{display:flex;align-items:flex-start;gap:12px;border:1.5px solid var(--line);border-radius:13px;padding:13px 14px;min-height:52px;cursor:pointer;background:#fff;transition:.15s}
+.choice:has(input:checked){border-color:var(--green2);background:#eff6ef;box-shadow:inset 0 0 0 1px var(--green2)}
+.choice input{width:19px;height:19px;flex:0 0 19px;margin:2px 0 0;accent-color:var(--green)}
+.letter{font-weight:850;color:var(--green);min-width:22px}.choice span:last-child{line-height:1.45}
+.feedback{min-height:22px;color:var(--muted);font-size:12px;margin:12px 0 0}
+.actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px}
+button{font:inherit;font-weight:800;border:0;border-radius:999px;padding:12px 19px;background:var(--green);color:#fff}
+button.secondary{background:#e7eee8;color:var(--green)}button:disabled{opacity:.4}
+.footnote{text-align:center;color:var(--muted);font-size:11px;margin:16px 4px}
+@media(max-width:480px){header{padding:14px 16px}main{padding:16px 12px 28px}.card{padding:18px 16px;border-radius:16px}.statement{font-size:15.5px}.choice{padding:12px;min-height:50px}.actions button{padding:12px 16px}}
+</style>
+</head>
+<body>
+<header><div><div class="brand">BIOLOGIA • PROF. MARCEL GANTES</div><div class="tag">É Bio, mas é de Boa.</div></div><div class="tag">ENEM 2020–2025</div></header>
+<main>
+<div class="topline"><span>DEMONSTRAÇÃO DO SIMULADO</span><span>QUESTÃO 01 / 28</span></div>
+<div class="track"><span></span></div>
+<section class="card">
+<div class="kicker">ENEM • 2025 • Prova azul • Questão 116</div>
+<h1>Ecologia e adaptação em ambientes extremos</h1>
+<div class="statement">As cangas são ambientes resultantes da atuação, ao longo de milhões de anos, de chuvas, enxurradas, calor e ventos em rochas ricas em ferro. São compostas por até 90% de óxidos de ferro e contêm solos muito ácidos, rasos, com reduzidos índices de fertilidade e temperaturas que atingem quase 70 °C na superfície. Ao contrário do que se imagina, esse tipo de ambiente abriga comunidades de plantas e animais com elevado número de espécies e distribuição restrita.</div>
+<div class="source">CARMO, F. F. et al. Ilhas de ferro estratégicas para a conservação. Disponível em: http://cienciahoje.org.br. Acesso em: 2 dez. 2018 (adaptado).</div>
+<p class="prompt">A seleção adaptativa nesses ambientes favorece a ocorrência de espécies</p>
+<div class="answers" role="radiogroup" aria-label="Alternativas da questão">
+<label class="choice"><input type="radio" name="answer" value="A"><span class="letter">A.</span><span>exóticas.</span></label>
+<label class="choice"><input type="radio" name="answer" value="B"><span class="letter">B.</span><span>migratórias.</span></label>
+<label class="choice"><input type="radio" name="answer" value="C"><span class="letter">C.</span><span>endêmicas.</span></label>
+<label class="choice"><input type="radio" name="answer" value="D"><span class="letter">D.</span><span>dominantes.</span></label>
+<label class="choice"><input type="radio" name="answer" value="E"><span class="letter">E.</span><span>generalistas.</span></label>
+</div>
+<p class="feedback" id="feedback" aria-live="polite">Selecione uma alternativa para registrar sua resposta.</p>
+<div class="actions"><button class="secondary" disabled>← Anterior</button><button id="next" disabled>Próxima →</button></div>
+</section>
+<p class="footnote">Demonstração de interface. Esta questão não contém figura no documento original. O gabarito permanece oculto nesta etapa de teste.</p>
+</main>
+<script>
+const radios=[...document.querySelectorAll('input[name="answer"]')],next=document.getElementById('next'),feedback=document.getElementById('feedback');
+radios.forEach(r=>r.addEventListener('change',()=>{next.disabled=false;feedback.textContent='Resposta selecionada: '+r.value+'. Você poderá alterar sua escolha antes de finalizar o simulado.';}));
+next.addEventListener('click',()=>{feedback.textContent='Esta é uma demonstração da primeira tela. As próximas questões serão liberadas quando o conjunto completo estiver montado.';next.textContent='Demonstração';next.disabled=true;});
+</script>
+</body></html>
